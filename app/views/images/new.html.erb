@@ -1,0 +1,24 @@
+<head>
+  
+  <title>Add New Image</title>
+  
+</head>
+
+<body>
+  
+  <%= form_for @image do |f| %>
+  <%= render 'shared/errors', object: @image %>
+  
+  <%= f.label :title %>
+  <%= f.text_field :title,  %>
+  
+  <%= f.label :title %>
+  <%= f.text_field :title,  %>
+  
+  <%= f.submit 'Upload' %>
+  
+  <% end %>
+  
+  
+    
+</body>

@@ -1,0 +1,9 @@
+<%= if object.errors.any? %>
+
+<h5> Found errors while saving</h5>
+
+<% object.errors.full_messages.each do |msg| %>
+<%= msg %>
+<% end %>
+
+<% end %>
