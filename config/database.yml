@@ -16,7 +16,7 @@ default:
   encoding: utf8
   database: nothingness
   pool: 5
-  username: root
+  username: nothing
   password: lolnope.jpg
   socket: /var/run/mysqld/mysqld.sock
 
@@ -25,7 +25,7 @@ development:
   encoding: utf8
   database: development
   pool: 5
-  username: root
+  username: nothing
   password: lolnope.jpg
   socket: /var/run/mysqld/mysqld.sock
   

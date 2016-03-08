@@ -7,6 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= link_to 'Simple Uploader', root_path %>
+
+<li><%= link_to 'Images', root_path %></li>
+<li><%= link_to 'Upload Your Photo', new_image_path %></li>
+
+<% flash.each do |key, value| %>
+    <%= key %>">
+    <%= value %>
+<% end %>
 
 <%= yield %>
 

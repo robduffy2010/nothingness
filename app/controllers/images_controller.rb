@@ -8,7 +8,7 @@ class ImagesController < ApplicationController
   end
 
   def create
-    @image = Image.new(photo_params)
+    @image = Image.new(image_params)
     if @image.save
       flash[:success] = "The image was added"
       redirect_to root_path
@@ -20,6 +20,6 @@ class ImagesController < ApplicationController
   private 
   
   def image_params
-    params.require(:photo).permit(:image, :title)
+    params.require(:image).permit(:image, :title)
   end
 end
