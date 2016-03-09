@@ -1,2 +1,12 @@
+<%= form_for @image do |f| %>
+<%= render 'shared/errors', object: @image %>
 
+<%= f.label :image %>
+<%= f.file_field :image  %>
+  
+<%= f.submit 'Upload' %>
+
+<% end %>
+  
+  
   <%= render @images %>

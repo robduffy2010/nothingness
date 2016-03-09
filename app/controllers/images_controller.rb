@@ -1,6 +1,7 @@
 class ImagesController < ApplicationController
   def index
     @images = Image.order('created_at')
+	@image = Image.new
   end
 
   def new
@@ -13,7 +14,7 @@ class ImagesController < ApplicationController
       flash[:success] = "The image was added"
       redirect_to root_path
     else 
-      render 'new'
+      render 'index'
     end
   end
   
