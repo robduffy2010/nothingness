@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'posts/index'
+
   get 'images/index'
 
   get 'images/new'

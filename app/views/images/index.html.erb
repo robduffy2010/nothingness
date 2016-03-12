@@ -1,7 +1,11 @@
+<h1> Create a new post </h1>
+
 <%= form_for @image do |f| %>
 <%= render 'shared/errors', object: @image %>
 
+<%= f.text_area :opening_post %>
 <%= f.label :image %>
+
 <%= f.file_field :image  %>
   
 <%= f.submit 'Upload' %>

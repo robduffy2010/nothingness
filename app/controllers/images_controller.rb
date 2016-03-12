@@ -2,7 +2,7 @@ class ImagesController < ApplicationController
   def index
     @images = Image.order('created_at')
 	@image = Image.new
-  end
+	end
 
   def new
     @image = Image.new
@@ -21,6 +21,6 @@ class ImagesController < ApplicationController
   private 
   
   def image_params
-    params.require(:image).permit(:image, :title)
+    params.require(:image).permit(:image, :title, :opening_post)
   end
 end
