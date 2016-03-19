@@ -1,0 +1,23 @@
+<%= debug (params) if Rails.env.development? %>
+
+<%= image_tag(@images.image.url(:original)) %>
+
+<%= @images.opening_post %>
+
+<h2> Comment </h2>
+
+<%= form_for @post, url: {action: "thread"} do |p| %>
+
+<%= p.text_area :content %>
+
+<%= p.submit "Submit" %>
+
+<% end %>
+
+<% @posts.each do |p| %>
+
+<%= p.content %>
+
+<% end %>
+
+

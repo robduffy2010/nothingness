@@ -1,14 +1,22 @@
 Rails.application.routes.draw do
   
-  get 'posts/index'
+#  get 'posts/index'
 
   get 'images/index'
 
   get 'images/new'
 
   get 'images/create'
+ 
+  get 'images/thread'
 
-resources :images, only: [:new, :create, :index, :destroy]
+  get 'images/:id', to: 'images#thread'
+  
+  post 'images/:id', to: 'images#thread'
+
+  patch 'images/:id', to: 'images#thread'
+
+resources :images, only: [:new, :create, :index, :destroy, :thread]
 
 root to: 'images#index'
   
