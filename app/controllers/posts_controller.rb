@@ -5,9 +5,11 @@ class PostsController < ApplicationController
   end
   
   def create
-   @new_post = Post.new(post_params)
+   @comment = Post.new(post_params)
+  end 
    
   private
 	def post_params
-	 params.require(:content).permit(:content)
+	 params.require(:post).permit(:content)
+	end
 end

@@ -6,11 +6,13 @@
 
 <h2> Comment </h2>
 
-<%= form_for @post, url: {action: "thread"} do |p| %>
+<%= form_for @comment,  method: :post, url: {controller: "images", action: "thread"} do |p| %>
+
+<%= render 'shared/errors', object: @comment %>
 
 <%= p.text_area :content %>
 
-<%= p.submit "Submit" %>
+<%= p.submit 'Submit' %>
 
 <% end %>
 

@@ -16,15 +16,19 @@ class ImagesController < ApplicationController
     else 
       render 'index'
     end
+	@comment = Post.new(post_params)
+	if @comment.save
+	  flash[:success] = "The post was added!"
+	  redirect_to root_path
+	else
+	 render 'index'
+	end
   end
   
   def thread
    @images = Image.find(params[:id])
    @posts = Post.where(:image_id => params[:id]) 
-   @post = @posts.new
-   @post.save
-   
-   
+   @comment = Post.new
   end
     
   private 
@@ -34,6 +38,6 @@ class ImagesController < ApplicationController
   end
   
   def post_params
-    params.require(:post).permit(:content)
+    params.permit(:content).merge(:image_id => params[:id])
   end
 end
