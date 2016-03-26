@@ -18,7 +18,11 @@
 
 <% @posts.each do |p| %>
 
+<b>Anonymous</b> <%= p.created_at %> <%= p.id %> <br/>
+
 <%= p.content %>
+
+</br>
 
 <% end %>
 

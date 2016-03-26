@@ -22,7 +22,8 @@ class ImagesController < ApplicationController
 	@comment = Post.new(post_params)
 	if @comment.save
 	  flash[:success] = "The post was added!"
-	  redirect_to root_path
+	  @page_id = @comment.image_id
+	  redirect_to :back
 	else
 	 render 'index'
 	end
