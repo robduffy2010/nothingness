@@ -16,7 +16,11 @@ Rails.application.routes.draw do
 
   patch 'images/:id', to: 'images#thread'
 
-resources :images, only: [:new, :create, :index, :destroy, :thread]
+resources :images, only: [:new, :create, :index, :destroy, :thread, :create_post] do
+	member do
+		post :create_post
+	end
+end
 
 root to: 'images#index'
   

@@ -16,6 +16,9 @@ class ImagesController < ApplicationController
     else 
       render 'index'
     end
+  end
+  
+  def create_post	
 	@comment = Post.new(post_params)
 	if @comment.save
 	  flash[:success] = "The post was added!"
@@ -38,6 +41,6 @@ class ImagesController < ApplicationController
   end
   
   def post_params
-    params.permit(:content).merge(:image_id => params[:id])
+    params.require(:post).permit(:content).merge(:image_id => params[:id])
   end
 end
