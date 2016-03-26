@@ -2,6 +2,7 @@
 
 <%= image_tag(@images.image.url(:original)) %>
 
+<b>Anonymous</b> <%= @images.created_at %> - Post ID:<%= @images.id %> </br>
 <%= @images.opening_post %>
 
 <h2> Comment </h2>
@@ -16,13 +17,15 @@
 
 <% end %>
 
+</br>
+
 <% @posts.each do |p| %>
 
-<b>Anonymous</b> <%= p.created_at %> <%= p.id %> <br/>
+<b>Anonymous</b> <%= p.created_at %> ID:<%= p.id %> <br/>
 
 <%= p.content %>
 
-</br>
+</br></br>
 
 <% end %>
 
