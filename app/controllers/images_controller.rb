@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
   def index
-    @images = Image.order('created_at')
+    @images = Image.order('score').reverse_order
 	@image = Image.new
 	end
 
@@ -10,6 +10,8 @@ class ImagesController < ApplicationController
 
   def create
     @image = Image.new(image_params)
+    image_scores = Image.order('score')
+    @image.score = image_scores[-1].score + 1
     if @image.save
       flash[:success] = "The image was added"
       redirect_to root_path
@@ -23,6 +25,7 @@ class ImagesController < ApplicationController
 	if @comment.save
 	  flash[:success] = "The post was added!"
 	  @page_id = @comment.image_id
+          image_plus_one
 	  redirect_to :back
 	else
 	 render 'index'
@@ -44,4 +47,12 @@ class ImagesController < ApplicationController
   def post_params
     params.require(:post).permit(:content).merge(:image_id => params[:id])
   end
+
+  private
+  def image_plus_one
+    image_id = @comment.image_id
+    image = Image.find(image_id)
+    image.score += 1
+    image.save
+ end
 end

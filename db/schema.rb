@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311195657) do
+ActiveRecord::Schema.define(version: 20160327205231) do
 
   create_table "images", force: :cascade do |t|
     t.string   "title",              limit: 255
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160311195657) do
     t.string   "image_content_type", limit: 255
     t.integer  "image_file_size",    limit: 4
     t.datetime "image_updated_at"
+    t.integer  "score",              limit: 4
   end
 
   add_index "images", ["post_id"], name: "index_images_on_post_id", using: :btree

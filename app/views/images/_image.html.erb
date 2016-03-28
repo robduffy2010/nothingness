@@ -1,4 +1,6 @@
-<%= link_to image_tag(image.image.url(:thumb)), image_path(image.id), target: '_blank' %>
+<%-# Load all images and their respective opening posts, one by one.  This is basically a for loop that outputs an image and a post every cycle.  The first "image" in image.image.url, is actually a built in Paperclip variable, so that's probably why you're confused about where it came from -%>
+
+<%= link_to image_tag(image.image.url(:medium)), image_path(image.id), target: '_blank' %>
 
 <%= image.opening_post %>
 

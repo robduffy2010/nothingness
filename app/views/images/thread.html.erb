@@ -1,11 +1,15 @@
+<%-# Turn on debugging if running rails in development mode -%>
 <%= debug (params) if Rails.env.development? %>
 
+<%-# Display the image for this thread, along with the opening comment and date the thread was created -%>
 <%= image_tag(@images.image.url(:original)) %>
 
 <b>Anonymous</b> <%= @images.created_at %> - Post ID:<%= @images.id %> </br>
 <%= @images.opening_post %>
 
 <h2> Comment </h2>
+
+<%-# Create a form to allow users to post comments.  The create_post action in the images controller handles to logic for this -%>
 
 <%= form_for @comment,  url: create_post_image_path do |p| %>
 
@@ -19,6 +23,7 @@
 
 </br>
 
+<%-# Print all comments for this thread in the order that they were created.  Also show comment IDs (NOT image IDs) -%>
 <% @posts.each do |p| %>
 
 <b>Anonymous</b> <%= p.created_at %> ID:<%= p.id %> <br/>
