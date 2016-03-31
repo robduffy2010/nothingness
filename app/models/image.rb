@@ -1,5 +1,5 @@
 class Image < ActiveRecord::Base
-  has_attached_file :image, styles: { thumb: ["64x64#", :jpg], medium: ['200x200>', :jpg], original: ['500x500>', :jpg] },
+  has_attached_file :image, styles: { thumb: ["64x64#", :jpg], medium: ['200x200>'], original: ['500x500>'] },
                   convert_options: { thumb: "-quality 75 -strip", 
 				     medium: "-quality 75 -strip",
                                      original: "-quality 85 -strip" } 
