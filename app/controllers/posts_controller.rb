@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(image_params)
+    @post = Post.new(post_params)
     post_scores = Post.order('score')
     @post.score = post_scores[-1].score + 1
     if @post.save
@@ -40,8 +40,8 @@ class PostsController < ApplicationController
     
   private 
   
-  def image_params
-    params.require(:image).permit(:image, :title, :opening_post)
+  def post_params
+    params.require(:post).permit(:image, :title, :opening_post)
   end
   
   def comment_params

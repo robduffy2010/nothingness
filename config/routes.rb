@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   
-#  get 'posts/index'
-
   get 'posts/index'
 
   get 'posts/new'
@@ -16,11 +14,12 @@ Rails.application.routes.draw do
 
   patch 'posts/:id', to: 'posts#thread'
 
-resources :posts, only: [:new, :create, :index, :destroy, :thread, :create_comment] do
-	member do
-		comment :create_comment
-	end
-end
+resources :posts, only: [:new, :create, :index, :destroy, :thread, :create_comment]
+# do
+#	member do
+#		post :create_comment
+#	end
+#end
 
 root to: 'posts#index'
   
