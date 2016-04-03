@@ -45,13 +45,13 @@ class PostsController < ApplicationController
   end
   
   def comment_params
-    params.require(:comment).permit(:content).merge(:image_id => params[:id])
+    params.require(:comment).permit(:image, :content).merge(:thread_id => params[:id])
   end
 
   private
   def post_plus_one
-    post_id = @comment.image_id
-    post = Post.find(image_id)
+    thread_id = @comment.thread_id
+    post = Post.find(thread_id)
     post.score += 1
     post.save
  end

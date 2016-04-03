@@ -12,13 +12,11 @@
 <%-# Create a form to allow users to post comments.  The create_post action in the images controller handles to logic for this -%>
 
 <%= form_for @comment,  url: create_comment_post_path do |p| %>
-
 <%= render 'shared/errors', object: @comment %>
-
 <%= p.text_area :content %>
-
+<%= p.label :image %>
+<%= p.file_field :image  %>
 <%= p.submit 'Submit' %>
-
 <% end %>
 
 </br>
@@ -28,7 +26,11 @@
 
 <b>Anonymous</b> <%= p.created_at %> ID:<%= p.id %> <br/>
 
-<%= p.content %>
+<%= p.content %> </br>
+<%= if p.image_file_name?; image_tag(p.image.url(:thumb)) end%>
+
+
+
 
 </br></br>
 
