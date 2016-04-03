@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 	@comment = Comment.new(comment_params)
 	if @comment.save
 	  flash[:success] = "The post was added!"
-	  @page_id = @comment.image_id
+	  @page_id = @comment.thread_id
           post_plus_one
 	  redirect_to :back
 	else
@@ -32,9 +32,9 @@ class PostsController < ApplicationController
 	end
   end
   
-  def threads
+  def thread
    @posts = Post.find(params[:id])
-   @comments = Comment.where(:image_id => params[:id]) 
+   @comments = Comment.where(:thread_id => params[:id]) 
    @comment = Comment.new
   end
     

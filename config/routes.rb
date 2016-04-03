@@ -14,12 +14,11 @@ Rails.application.routes.draw do
 
   patch 'posts/:id', to: 'posts#thread'
 
-resources :posts, only: [:new, :create, :index, :destroy, :thread, :create_comment]
-# do
-#	member do
-#		post :create_comment
-#	end
-#end
+resources :posts, only: [:new, :create, :index, :destroy, :thread, :create_comment] do
+	member do
+		post :create_comment
+	end
+end
 
 root to: 'posts#index'
   
