@@ -2,27 +2,27 @@ Rails.application.routes.draw do
   
 #  get 'posts/index'
 
-  get 'images/index'
+  get 'posts/index'
 
-  get 'images/new'
+  get 'posts/new'
 
-  get 'images/create'
+  get 'posts/create'
  
-  get 'images/thread'
+  get 'posts/thread'
 
-  get 'images/:id', to: 'images#thread'
+  get 'posts/:id', to: 'posts#thread'
   
-  post 'images/:id', to: 'images#thread'
+  post 'posts/:id', to: 'posts#thread'
 
-  patch 'images/:id', to: 'images#thread'
+  patch 'posts/:id', to: 'posts#thread'
 
-resources :images, only: [:new, :create, :index, :destroy, :thread, :create_post] do
+resources :posts, only: [:new, :create, :index, :destroy, :thread, :create_comment] do
 	member do
-		post :create_post
+		comment :create_comment
 	end
 end
 
-root to: 'images#index'
+root to: 'posts#index'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
