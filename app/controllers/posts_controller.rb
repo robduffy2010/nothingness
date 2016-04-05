@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   end
   
   def comment_params
-    params.require(:comment).permit(:image, :content).merge(:thread_id => params[:id])
+    params.require(:comment).permit(:image, :content, :parent_id).merge(:thread_id => params[:id])
   end
 
   private

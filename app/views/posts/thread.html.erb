@@ -23,14 +23,52 @@
 
 <%-# Print all comments for this thread in the order that they were created.  Also show comment IDs (NOT image IDs) -%>
 <% @comments.each do |p| %>
+<% next if p.parent_id.present? %>
 
 <b>Anonymous</b> <%= p.created_at %> ID:<%= p.id %> <br/>
 
 <%= p.content %> </br>
 <%= if p.image_file_name?; image_tag(p.image.url(:thumb)) end%>
 
+	<%-# Create a form for comment responses -%>
+	<%= form_for @comment, url: create_comment_post_path do |q| %>
+	<%= q.text_area :content %>
+	<%= q.hidden_field :parent_id, value: p.id %>
+	<%= q.submit 'Submit' %>
+	<% end %>
 
+<%-# Print all responses to comment -%>
+<% responses = Comment.where(parent_id: p.id) %>
 
+	<% if responses.present? ; then responses.each do |r| %>
+	
+		<blockquote><b>Anonymous</b> <%= r.created_at %> ID:<%= r.id %> <br/>
+		<%= r.content %> </br>
+		
+			<%-# Create a form for comment responses -%>
+                	<%= form_for @comment, url: create_comment_post_path do |t| %>
+                	<%= t.text_area :content %>
+                	<%= t.hidden_field :parent_id, value: r.id %>
+                	<%= t.submit 'Submit' %>
+                	<% end %>
+		
+			<% response_responses = Comment.where(parent_id: r.id) %>
+				<% if response_responses.present? ; then response_responses.each do |s| %>
+					<blockquote><b>Anonymous</b> <%= s.created_at %> ID:<%= s.id %> <br/>
+                			<%= s.content %> </br>
+					
+						<%-# Create a form for comment responses -%>
+					        <%= form_for @comment, url: create_comment_post_path do |t| %>
+     						<%= t.text_area :content %>
+        					<%= t.hidden_field :parent_id, value: s.id %>
+        					<%= t.submit 'Submit' %>
+        					<% end %>
+					</blockquote>
+					<% end %>
+				<% end %>
+		</blockquote>
+		<% end %>
+	<% end %>
 
 </br></br>
 
