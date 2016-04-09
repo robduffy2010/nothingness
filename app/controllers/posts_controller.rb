@@ -26,7 +26,7 @@ class PostsController < ApplicationController
 	  flash[:success] = "The post was added!"
 	  @page_id = @comment.thread_id
           post_plus_one
-	  redirect_to :back
+	  redirect_back(fallback_location: root_path)
 	else
 	 render 'index'
 	end
