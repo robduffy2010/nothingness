@@ -8,7 +8,7 @@
 		</br>
                         <%-# Create a form for comment responses -%>
                         <%= form_for @comment, url: create_comment_post_path do |t| %>
-                        <%= t.text_area :content %>
+                        <%= t.text_area :content, :required => true %>
                         <%= t.hidden_field :parent_id, value: r.id %>
 			<%= t.label :image %>
 			<%= t.file_field :image  %>
@@ -24,7 +24,7 @@
 
                                                 <%-# Create a form for comment responses -%>
                                                 <%= form_for @comment, url: create_comment_post_path do |t| %>
-                                                <%= t.text_area :content %>
+                                                <%= t.text_area :content, :required => true %>
                                                 <%= t.hidden_field :parent_id, value: s.id %>
 						<%= t.label :image %>
                         			<%= t.file_field :image  %>
@@ -39,7 +39,7 @@
 							    </br>
                                                	       		<%-# Create a form for comment responses -%>
                                           	       		<%= form_for @comment, url: create_comment_post_path do |t| %>
-                                         	       		<%= t.text_area :content %>
+                                         	       		<%= t.text_area :content, :required => true %>
                                             	   	        <%= t.hidden_field :parent_id, value: u.id %>
 								<%= t.label :image %>
                         					<%= t.file_field :image  %>
@@ -54,7 +54,7 @@
 										 </br>
                                                              		         <%-# Create a form for comment responses -%>
                                                         		         <%= form_for @comment, url: create_comment_post_path do |t| %>
-                                                          		         <%= t.text_area :content %>
+                                                          		         <%= t.text_area :content, :required => true %>
                                                          		         <%= t.hidden_field :parent_id, value: v.id %>
 										 <%= t.label :image %>
                         							 <%= t.file_field :image  %>
@@ -68,7 +68,7 @@
 												 <%= if w.image_file_name?; image_tag(w.image.url) end%>
                                                                                  		   <%-# Create a form for comment responses -%>
                                                                                  		   <%= form_for @comment, url: create_comment_post_path do |t| %>
-                                                                                 		   <%= t.text_area :content %>
+                                                                                 		   <%= t.text_area :content, :required => true %>
                                                                                  		   <%= t.hidden_field :parent_id, value: v.id %>
                                                                                  		   <%= t.label :image %>
                                                                                  		   <%= t.file_field :image  %>

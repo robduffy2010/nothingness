@@ -5,7 +5,7 @@
 <%= form_for @post do |f| %>
 <%= render 'shared/errors', object: @post %>
 
-<%= f.text_area :opening_post %>
+<%= f.text_area :opening_post, :required => true %>
 <%= f.label :image %>
 
 <%= f.file_field :image  %>
