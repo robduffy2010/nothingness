@@ -4,11 +4,14 @@
 
                 <blockquote><b>Anonymous</b> <%= r.created_at %> ID:<%= r.id %> <br/>
                 <%= r.content %> </br>
-
+		<%= if r.image_file_name?; image_tag(r.image.url) end%>
+		</br>
                         <%-# Create a form for comment responses -%>
                         <%= form_for @comment, url: create_comment_post_path do |t| %>
                         <%= t.text_area :content %>
                         <%= t.hidden_field :parent_id, value: r.id %>
+			<%= t.label :image %>
+			<%= t.file_field :image  %>
                         <%= t.submit 'Submit' %>
                         <% end %>
 
@@ -16,11 +19,15 @@
                                 <% if responses.present? ; then responses.each do |s| %>
                                         <blockquote><b>Anonymous</b> <%= s.created_at %> ID:<%= s.id %> <br/>
                                         <%= s.content %> </br>
+					<%= if s.image_file_name?; image_tag(s.image.url) end%>
+					</br>
 
                                                 <%-# Create a form for comment responses -%>
                                                 <%= form_for @comment, url: create_comment_post_path do |t| %>
                                                 <%= t.text_area :content %>
                                                 <%= t.hidden_field :parent_id, value: s.id %>
+						<%= t.label :image %>
+                        			<%= t.file_field :image  %>
                                                 <%= t.submit 'Submit' %>
                                                 <% end %>
 
@@ -28,11 +35,14 @@
 			                                <% if responses.present? ; then responses.each do |u| %>
                         		            	    <blockquote><b>Anonymous</b> <%= u.created_at %> ID:<%= u.id %> <br/>
                                         		    <%= u.content %> </br>
-
+							    <%= if u.image_file_name?; image_tag(u.image.url) end %>
+							    </br>
                                                	       		<%-# Create a form for comment responses -%>
                                           	       		<%= form_for @comment, url: create_comment_post_path do |t| %>
                                          	       		<%= t.text_area :content %>
                                             	   	        <%= t.hidden_field :parent_id, value: u.id %>
+								<%= t.label :image %>
+                        					<%= t.file_field :image  %>
                                            	       		<%= t.submit 'Submit' %>
 								<% end %>
 
@@ -40,13 +50,34 @@
 		                                                           <% if responses.present? ; then responses.each do |v| %>
                    			                                         <blockquote><b>Anonymous</b> <%= v.created_at %> ID:<%= v.id %> <br/>
                                         		                         <%= v.content %> </br>
-
+										 <%= if v.image_file_name?; image_tag(v.image.url) end%>
+										 </br>
                                                              		         <%-# Create a form for comment responses -%>
                                                         		         <%= form_for @comment, url: create_comment_post_path do |t| %>
                                                           		         <%= t.text_area :content %>
                                                          		         <%= t.hidden_field :parent_id, value: v.id %>
+										 <%= t.label :image %>
+                        							 <%= t.file_field :image  %>
                                                          		         <%= t.submit 'Submit' %>
                                                               		         <% end %>
+							
+											<% responses = Comment.where(parent_id: v.id) %>
+                                        		                                   <% if responses.present? ; then responses.each do |w| %>
+                                                        		                         <blockquote><b>Anonymous</b> <%= w.created_at %> ID:<%= w.id %> <br/>
+                                                                        		         <%= w.content %> </br>
+												 <%= if w.image_file_name?; image_tag(w.image.url) end%>
+                                                                                 		   <%-# Create a form for comment responses -%>
+                                                                                 		   <%= form_for @comment, url: create_comment_post_path do |t| %>
+                                                                                 		   <%= t.text_area :content %>
+                                                                                 		   <%= t.hidden_field :parent_id, value: v.id %>
+                                                                                 		   <%= t.label :image %>
+                                                                                 		   <%= t.file_field :image  %>
+                                                                             		           <%= t.submit 'Submit' %>
+                                                                           		           <% end %>
+												 </blockquote>
+											<% end %>
+											<% end %>
+
 										 </blockquote>
 
 										 <% end %>

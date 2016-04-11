@@ -2,7 +2,7 @@
 <%= debug (params) if Rails.env.development? %>
 
 <%-# Display the image for this thread, along with the opening comment and date the thread was created -%>
-<%= image_tag(@posts.image.url(:original)) %>
+<%= image_tag(@posts.image.url) %>
 
 <b>Anonymous</b> <%= @posts.created_at %> - Post ID:<%= @posts.id %> </br>
 <%= @posts.opening_post %>
@@ -34,6 +34,8 @@
 	<%= form_for @comment, url: create_comment_post_path do |q| %>
 	<%= q.text_area :content %>
 	<%= q.hidden_field :parent_id, value: p.id %>
+	<%= q.label :image %>
+	<%= q.file_field :image  %>
 	<%= q.submit 'Submit' %>
 	<% end %>
 
