@@ -2,7 +2,7 @@
 <%= debug (params) if Rails.env.development? %>
 
 <%-# Display the image for this thread, along with the opening comment and date the thread was created -%>
-<%= image_tag(@posts.image.url) %>
+<%= if @posts.image.present? ; then image_tag(@posts.image.url) end %>
 
 <b>Anonymous</b> <%= @posts.created_at %> - Post ID:<%= @posts.id %> </br>
 <%= @posts.opening_post %>
