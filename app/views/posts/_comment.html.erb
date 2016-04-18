@@ -1,0 +1,20 @@
+<div class="comment">
+<% if comment.parent_id.nil? %>
+
+ <b>Anonymous</b> <%= comment.created_at %> ID:<%= comment.id %> <br/>
+ <%= comment.content %>
+ </br>
+ <%= if comment.image_file_name?; image_tag(comment.image.url, class: "comment_img") end%>
+ <%= render partial: "form", locals: { comment: comment } %>
+ 
+<% responses = Comment.where(parent_id: comment.id) %>
+ <% if responses.present? %>
+  <%= render partial: "reply", collection: responses %>
+  
+ <% end %>
+<% end %>
+
+</div>
+
+
+

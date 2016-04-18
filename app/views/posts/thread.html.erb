@@ -4,43 +4,28 @@
 <%-# Display the image for this thread, along with the opening comment and date the thread was created -%>
 <%= if @posts.image.present? ; then image_tag(@posts.image.url) end %>
 
-<b>Anonymous</b> <%= @posts.created_at %> - Post ID:<%= @posts.id %> </br>
-<%= @posts.opening_post %>
+ <div class="opening_post">
+  <b>Anonymous</b> <%= @posts.created_at %> - Post ID:<%= @posts.id %> </br>
+  <%= @posts.opening_post %>
+ </div>
+ <h2> Comment </h2>
 
-<h2> Comment </h2>
-
-<%-# Create a form to allow users to post comments.  The create_post action in the images controller handles to logic for this -%>
-
-<%= form_for @comment,  url: create_comment_post_path do |p| %>
-<%= render 'shared/errors', object: @comment %>
-<%= p.text_area :content %>
-<%= p.label :image %>
-<%= p.file_field :image  %>
-<%= p.submit 'Submit' %>
-<% end %>
-
+ <%-# Create a form to allow users to post comments.  The create_post action in the images controller handles to logic for this -%>
+  <div class="form-group"> 
+  <%= form_for @comment,  url: create_comment_post_path do |p| %>
+  <%= render 'shared/errors', object: @comment %>
+  <%= p.text_area :content, class: 'form-control' %>
+  <%= p.label :image %>
+  <%= p.file_field :image, class: 'form-control'  %>
+  <%= p.submit 'Submit', class: 'form-submit' %>
+  <% end %>
+ </div>
 </br>
 
 <%-# Print all comments for this thread in the order that they were created.  Also show comment IDs (NOT image IDs) -%>
-<% @comments.each do |p| %>
-<% next if p.parent_id.present? %>
+<div id="comments">
+	<%= render partial: "comment", collection: @comments %>
+</div>
 
-<b>Anonymous</b> <%= p.created_at %> ID:<%= p.id %> <br/>
-
-<%= p.content %> </br>
-<%= if p.image_file_name?; image_tag(p.image.url(:thumb)) end%>
-
-	<%-# Create a form for comment responses -%>
-	<%= form_for @comment, url: create_comment_post_path do |q| %>
-	<%= q.text_area :content %>
-	<%= q.hidden_field :parent_id, value: p.id %>
-	<%= q.label :image %>
-	<%= q.file_field :image  %>
-	<%= q.submit 'Submit' %>
-	<% end %>
-
-<%-# Print all responses to comment -%>
-	<%= render "responses", p: p %>
-<% end %>
 
 

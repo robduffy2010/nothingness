@@ -1,0 +1,21 @@
+<div class="comment">
+ <blockquote>
+  <%-# Print the response and it's corresponding image %>
+  <b>Anonymous</b> <%= reply.created_at %> ID:<%= reply.id %> Parent: <%= reply.parent_id %> <br/>
+  <%= reply.content %>
+  </br>
+ 
+  <%-# Only print the image if this comment has one.  Otherwise we get a stupid broken image icon thing %>
+  <%= if reply.image_file_name?; image_tag(reply.image.url, class: "comment_img") end%>
+
+  <%-# Render the form partial to show a form.  We also pass the reply variable to the form partial so that the form can find the parent_id of the comment it's letting you respond to %>
+  <%= render partial: "form", locals: { comment: reply } %> 
+
+  <%-# Find out if this response has any responses to it.  If it does, print them by rendering the reply partial (this file) and passing the new response hash to it as a collection %>
+  <% responses = Comment.where(parent_id: reply.id) %>
+  <% if responses.present? %>
+   <%= render partial: "reply", collection: responses %>
+  <% end %> 
+ </blockquote>
+ 
+</div>

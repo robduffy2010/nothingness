@@ -1,0 +1,25 @@
+ 
+<%-# Create a form for comment responses -%>
+
+  <%= form_for @comment, url: create_comment_post_path do |q| %>
+
+   <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% @comment.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+   <% end %>
+
+   <div class="form-group">
+   <%= q.text_area :content, class: 'form-control' %>
+   <%= q.hidden_field :parent_id, value: comment.id %>
+   <%= q.label :image %>
+   <%= q.file_field :image, class: 'form-control' %>
+   <%= q.submit 'Submit', class: 'form-submit' %>
+   </div>
+  <% end %>
